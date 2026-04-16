@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delivery Dashboard — Crispy Chicken Calabar</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body class="dashboard-body">
+
+<!-- ════ SIDEBAR ════════════════════════════════════════════ -->
+<aside class="dash-sidebar" id="sidebar">
+  <div class="dash-brand">
+    <div class="nav-logo">🛵</div>
+    <div>
+      <div style="font-weight:800;font-size:0.95rem;">Logistics</div>
+      <div style="font-size:0.72rem;color:var(--text-muted);">Delivery Network</div>
+    </div>
+  </div>
+
+  <nav class="dash-nav" style="margin-top:20px;">
+    <div class="dash-nav-section">
+      <div class="dash-nav-label">Portals</div>
+      <a href="ceo-dashboard.html" class="dash-nav-item">
+        <span>👔</span> CEO Dashboard
+      </a>
+      <a href="manager-dashboard.html" class="dash-nav-item">
+        <span>📋</span> Manager Portal
+      </a>
+    </div>
+    <div class="dash-nav-section" style="margin-top:auto;">
+      <a href="delivery.html" class="dash-nav-item active"><span>🛵</span> Delivery Active</a>
+      <a href="settings.html" class="dash-nav-item"><span>⚙️</span> Settings</a>
+      <a href="index.html" class="dash-nav-item"><span>🌐</span> Return to Website</a>
+    </div>
+  </nav>
+</aside>
+
+<!-- ════ MAIN ════════════════════════════════════════════════ -->
+<main class="dash-main">
+
+  <header class="dash-topbar">
+    <div style="display:flex;align-items:center;">
+      <button class="sidebar-toggle-btn" onclick="document.body.classList.toggle('sidebar-collapsed')">☰</button>
+      <div>
+        <h2 style="font-size:1.3rem;font-weight:800;">Delivery Network Status</h2>
+        <p style="font-size:0.82rem;color:var(--text-muted);margin-top:2px;">All Riders <span style="color:var(--success);">● Active</span></p>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div class="dash-time">09:16 AM</div>
+      <div class="notif-btn">🔔</div>
+      <div class="manager-avatar" style="background:#3B82F6;">DL</div>
+    </div>
+  </header>
+
+  <div class="dash-content">
+    <div style="padding:40px;text-align:center;background:var(--bg-card);border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,0.06);">
+      <div style="font-size:3rem;margin-bottom:16px;">🛵</div>
+      <h2>Delivery Management Module</h2>
+      <p style="color:var(--text-muted);margin-top:8px;">Live tracking and fleet management coming soon.</p>
+    </div>
+  </div>
+
+</main>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>

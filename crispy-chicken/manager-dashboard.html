@@ -102,8 +102,10 @@
       </a>
     </div>
     <div class="dash-nav-section" style="margin-top:auto;">
-      <a href="index.html" class="dash-nav-item"><span>🌐</span> View Website</a>
+      <a href="delivery.html" class="dash-nav-item"><span>🛵</span> Delivery Module</a>
+      <a href="settings.html" class="dash-nav-item"><span>⚙️</span> Settings</a>
       <a href="ceo-dashboard.html" class="dash-nav-item"><span>👔</span> CEO Dashboard</a>
+      <a href="index.html" class="dash-nav-item"><span>🌐</span> View Website</a>
     </div>
   </nav>
 </aside>
@@ -112,7 +114,9 @@
 <main class="dash-main">
 
   <header class="dash-topbar">
-    <div>
+    <div style="display:flex;align-items:center;">
+      <button class="sidebar-toggle-btn" onclick="document.body.classList.toggle('sidebar-collapsed')">☰</button>
+      <div>
       <h2 style="font-size:1.3rem;font-weight:800;">Live Orders</h2>
       <p style="font-size:0.82rem;color:var(--text-muted);margin-top:2px;">Branch 2 · Marian Road · <span style="color:var(--success);">● Open</span></p>
     </div>
@@ -152,10 +156,11 @@
       <div class="stat-trend up">+0.2 ↑</div>
       <div class="click-hint">View Feedback →</div>
     </div>
-    <div class="stat-card">
+    <div class="stat-card clickable" onclick="openModal('active-orders-modal')">
       <div class="stat-icon" style="background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.3);">🛵</div>
       <div class="stat-body"><div class="stat-value" id="active-orders">7</div><div class="stat-label">Active Orders</div></div>
-      <div style="width:8px;height:8px;border-radius:50%;background:var(--danger);animation:pulse 2s infinite;"></div>
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--danger);animation:pulse 2s infinite; position:absolute; top:24px; right:24px;"></div>
+      <div class="click-hint">View Active Orders →</div>
     </div>
   </div>
 
@@ -536,6 +541,44 @@
 
       <div style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius-md);padding:18px;font-size:0.88rem;margin-top:8px;">
         <strong style="color:var(--success);">✅ Good Performance:</strong> Branch 2 is consistently hitting under the 25-min SLA target. The 11AM–1PM rush window is the tightest — consider pre-prepping chicken batches at 10:30 AM daily.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVE ORDERS MODAL -->
+<div class="modal-backdrop" id="active-orders-modal" onclick="closeOnBackdrop(event,'active-orders-modal')">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2>🛵 Active Orders Analytics</h2>
+      <div class="modal-close" onclick="closeModal('active-orders-modal')">✕</div>
+    </div>
+    <div class="modal-body">
+      <div class="an-cards">
+        <div class="an-card"><div class="an-card-val">7</div><div class="an-card-lbl">Currently Active</div></div>
+        <div class="an-card"><div class="an-card-val">12 min</div><div class="an-card-lbl">Avg Dispatch Time</div></div>
+        <div class="an-card"><div class="an-card-val" style="color:var(--success);">98%</div><div class="an-card-lbl">Delivery SLA Met</div></div>
+      </div>
+      <div class="modal-section-title">Active Orders Breakdown</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div class="prog-row"><span class="prog-label">🆕 New</span><div class="prog-bar-wrap"><div class="prog-bar" style="width:40%;"></div></div><span class="prog-val">3</span></div>
+        <div class="prog-row"><span class="prog-label">👨‍🍳 Preparing</span><div class="prog-bar-wrap"><div class="prog-bar" style="width:30%;background:linear-gradient(to right,var(--warning),#FBBF24);"></div></div><span class="prog-val">2</span></div>
+        <div class="prog-row"><span class="prog-label">📦 Ready</span><div class="prog-bar-wrap"><div class="prog-bar" style="width:15%;background:linear-gradient(to right,#3B82F6,#06B6D4);"></div></div><span class="prog-val">1</span></div>
+        <div class="prog-row"><span class="prog-label">🛵 Dispatched</span><div class="prog-bar-wrap"><div class="prog-bar" style="width:15%;background:linear-gradient(to right,var(--success),#4ADE80);"></div></div><span class="prog-val">1</span></div>
+      </div>
+      
+      <div class="modal-section-title">Active Riders (Branch 2)</div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-md);padding:14px;display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:800;">CU</div>
+          <div style="flex:1;"><div style="font-weight:700;">Chibuzor U.</div><div style="font-size:0.75rem;color:var(--text-muted);">En route · Order #0475</div></div>
+          <span class="chip" style="background:var(--primary-dim);color:var(--primary);">Active</span>
+        </div>
+        <div style="background:var(--bg-card);border:1px solid rgba(255,255,255,0.06);border-radius:var(--radius-md);padding:14px;display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:#3B82F6;display:flex;align-items:center;justify-content:center;font-weight:800;">SI</div>
+          <div style="flex:1;"><div style="font-weight:700;">Sunday I.</div><div style="font-size:0.75rem;color:var(--text-muted);">Returning to branch</div></div>
+          <span class="chip" style="background:rgba(59,130,246,0.1);color:#3B82F6;">Available soon</span>
+        </div>
       </div>
     </div>
   </div>
