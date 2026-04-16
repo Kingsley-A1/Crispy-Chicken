@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CEO Command Center — Crispy Chicken</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body class="dashboard-body">
+
+<aside class="dash-sidebar" id="sidebar">
+  <div class="dash-brand">
+    <div class="nav-logo" style="background: linear-gradient(135deg, #111, #333); border:1px solid var(--gold);">👑</div>
+    <div>
+      <div style="font-weight:800;font-size:0.95rem;color:var(--gold);">CEO Portal</div>
+      <div style="font-size:0.72rem;color:var(--text-muted);">Command Center</div>
+    </div>
+  </div>
+
+  <div class="branch-pill" style="border-color:var(--primary); background:var(--primary-dim);">
+    <span style="font-size:1rem;">🌍</span>
+    <div>
+      <div style="font-size:0.8rem;font-weight:700;">All 5 Branches</div>
+      <div style="font-size:0.7rem;color:var(--text-muted);">Network Overview</div>
+    </div>
+  </div>
+
+  <nav class="dash-nav">
+    <div class="dash-nav-section">
+      <div class="dash-nav-label">Global Views</div>
+      <a href="#" class="dash-nav-item active">
+        <span>📈</span> Performance Overview
+      </a>
+      <a href="#" class="dash-nav-item">
+        <span>🏪</span> Branch Management
+      </a>
+      <a href="#" class="dash-nav-item">
+        <span>👥</span> Customer Insights
+      </a>
+    </div>
+    <div class="dash-nav-section">
+      <div class="dash-nav-label">Financials</div>
+      <a href="#" class="dash-nav-item">
+        <span>💰</span> Revenue & Sales
+      </a>
+      <a href="#" class="dash-nav-item">
+        <span>📉</span> Cost Analysis
+      </a>
+    </div>
+    <div class="dash-nav-section" style="margin-top:auto;">
+      <a href="manager-dashboard.html" class="dash-nav-item">
+        <span>📋</span> Manager Portal Mode
+      </a>
+      <a href="index.html" class="dash-nav-item">
+        <span>🌐</span> Public Website
+      </a>
+    </div>
+  </nav>
+</aside>
+
+<main class="dash-main">
+
+  <header class="dash-topbar">
+    <div>
+      <h2 style="font-size:1.3rem;font-weight:800;">HQ Command Center</h2>
+      <p style="font-size:0.82rem;color:var(--text-muted); margin-top:2px;">Real-time network analytics · All systems operational.</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div class="dash-time">HQ TIME: <span id="dash-time">09:16 AM</span></div>
+      <div class="notif-btn">🔔<span class="notif-dot"></span></div>
+      <div class="manager-avatar" style="background:var(--gold);color:#000;">CEO</div>
+    </div>
+  </header>
+
+  <div class="stats-row" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="stat-card" style="background: linear-gradient(135deg, var(--bg-card), rgba(255,107,0,0.05)); border-color:var(--primary-border);">
+      <div class="stat-label" style="margin-bottom:8px;">Network Revenue (Today)</div>
+      <div class="stat-value" style="color:var(--primary);">₦842,500</div>
+      <div style="font-size:0.85rem;color:var(--text-muted);">vs ₦790,000 yesterday</div>
+      <div class="stat-trend up">+6.5% ↑</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label" style="margin-bottom:8px;">Total Network Orders</div>
+      <div class="stat-value">215</div>
+      <div style="font-size:0.85rem;color:var(--text-muted);">Across 5 branches</div>
+      <div class="stat-trend up">+14% ↑</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label" style="margin-bottom:8px;">Network Avg Rating</div>
+      <div class="stat-value" style="color:var(--gold);">4.8 <span style="font-size:1rem;">⭐</span></div>
+      <div style="font-size:0.85rem;color:var(--text-muted);">Based on 182 reviews</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label" style="margin-bottom:8px;">Active Customers</div>
+      <div class="stat-value">84</div>
+      <div style="font-size:0.85rem;color:var(--text-muted);">Ordering right now</div>
+      <div class="stat-trend up" style="background:rgba(59,130,246,0.15);color:var(--info);">Live</div>
+    </div>
+  </div>
+
+  <div class="dash-content" style="padding-top:16px;">
+    
+    <div class="ceo-grid">
+      
+      <!-- BRANCH PERFORMANCE -->
+      <div class="ceo-panel">
+        <h3>Branch Leaderboard <span style="font-size:0.8rem;color:var(--primary);font-weight:600;padding:4px 12px;background:var(--primary-dim);border-radius:10px;">Live Ranking</span></h3>
+        
+        <div class="branch-list">
+          
+          <div class="branch-list-item">
+            <div class="bli-main">
+              <div class="bli-rank gold">1</div>
+              <div class="bli-info">
+                <div class="b-name">Branch 1 — Effio-Ette</div>
+                <div class="b-mgr">Mgr: Sarah O.</div>
+              </div>
+            </div>
+            <div class="bli-metrics">
+              <div>
+                <div class="bli-metric-val">₦285k</div>
+                <div class="bli-metric-lbl">Revenue</div>
+              </div>
+              <div>
+                <div class="bli-metric-val">74</div>
+                <div class="bli-metric-lbl">Orders</div>
+              </div>
+              <div style="display:flex;align-items:center;"><div class="bli-status"></div></div>
+            </div>
+          </div>
+
+          <div class="branch-list-item">
+            <div class="bli-main">
+              <div class="bli-rank" style="background:rgba(255,255,255,0.2);">2</div>
+              <div class="bli-info">
+                <div class="b-name">Branch 2 — Marian Road</div>
+                <div class="b-mgr">Mgr: Daniel K.</div>
+              </div>
+            </div>
+            <div class="bli-metrics">
+              <div>
+                <div class="bli-metric-val">₦186k</div>
+                <div class="bli-metric-lbl">Revenue</div>
+              </div>
+              <div>
+                <div class="bli-metric-val">47</div>
+                <div class="bli-metric-lbl">Orders</div>
+              </div>
+              <div style="display:flex;align-items:center;"><div class="bli-status"></div></div>
+            </div>
+          </div>
+
+          <div class="branch-list-item">
+            <div class="bli-main">
+              <div class="bli-rank">3</div>
+              <div class="bli-info">
+                <div class="b-name">Branch 4 — Watt Market</div>
+                <div class="b-mgr">Mgr: Blessing E.</div>
+              </div>
+            </div>
+            <div class="bli-metrics">
+              <div>
+                <div class="bli-metric-val">₦162k</div>
+                <div class="bli-metric-lbl">Revenue</div>
+              </div>
+              <div>
+                <div class="bli-metric-val">42</div>
+                <div class="bli-metric-lbl">Orders</div>
+              </div>
+              <div style="display:flex;align-items:center;"><div class="bli-status"></div></div>
+            </div>
+          </div>
+
+          <div class="branch-list-item">
+            <div class="bli-main">
+              <div class="bli-rank">4</div>
+              <div class="bli-info">
+                <div class="b-name">Branch 5 — Ikot Eyo</div>
+                <div class="b-mgr">Mgr: John C.</div>
+              </div>
+            </div>
+            <div class="bli-metrics">
+              <div>
+                <div class="bli-metric-val">₦115k</div>
+                <div class="bli-metric-lbl">Revenue</div>
+              </div>
+              <div>
+                <div class="bli-metric-val">30</div>
+                <div class="bli-metric-lbl">Orders</div>
+              </div>
+              <div style="display:flex;align-items:center;"><div class="bli-status"></div></div>
+            </div>
+          </div>
+
+          <div class="branch-list-item" style="border-color:rgba(239,68,68,0.3); background:rgba(239,68,68,0.05);">
+            <div class="bli-main">
+              <div class="bli-rank" style="color:var(--danger);">5</div>
+              <div class="bli-info">
+                <div class="b-name">Branch 3 — Calabar South</div>
+                <div class="b-mgr">Mgr: Michael U.</div>
+              </div>
+            </div>
+            <div class="bli-metrics">
+              <div>
+                <div class="bli-metric-val" style="color:var(--danger);">₦94k</div>
+                <div class="bli-metric-lbl">Revenue</div>
+              </div>
+              <div>
+                <div class="bli-metric-val">22</div>
+                <div class="bli-metric-lbl">Orders</div>
+              </div>
+              <div style="display:flex;align-items:center;"><div class="bli-status" style="background:var(--warning);box-shadow:none;"></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MAP & ALERTS -->
+      <div style="display:flex; flex-direction:column; gap:32px;">
+        
+        <div class="ceo-panel" style="padding:0; overflow:hidden;">
+          <div style="padding:20px; border-bottom:1px solid rgba(255,255,255,0.06); position:absolute; z-index:10; width:100%; background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);">
+            <h3 style="margin:0; text-shadow:0 2px 4px rgba(0,0,0,0.8);">Live Map Activity</h3>
+          </div>
+          <div class="ceo-map-mockup">
+            <div class="map-pin p1" title="Branch 1"></div>
+            <div class="map-pin p2" title="Branch 2"></div>
+            <div class="map-pin p3" title="Branch 3"></div>
+            <div class="map-pin p4" title="Branch 4"></div>
+            <div class="map-pin p5" title="Branch 5"></div>
+            
+            <div style="position:absolute; bottom:20px; right:20px; background:rgba(0,0,0,0.6); backdrop-filter:blur(10px); padding:10px; border-radius:10px; font-size:0.8rem; z-index:10; border:1px solid rgba(255,255,255,0.1);">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><div style="width:8px;height:8px;border-radius:50%;background:var(--primary);"></div> 7 Active Riders</div>
+              <div style="display:flex;align-items:center;gap:8px;"><div style="width:8px;height:8px;border-radius:50%;background:var(--success);"></div> 5 Branches Online</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ceo-panel">
+          <h3 style="margin-bottom:16px;">System Alerts <span class="nav-badge warning">1</span></h3>
+          <div class="alert-item warning" style="margin-bottom:12px;">
+            <span>⚠️</span>
+            <div>
+              <div style="font-weight:700;font-size:0.9rem;">Branch 3 Performance Drop</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">Calabar South branch order volume is 25% below 30-day average.</div>
+            </div>
+          </div>
+          <div class="alert-item" style="background:rgba(59,130,246,0.05); border-color:rgba(59,130,246,0.2);">
+            <span>💡</span>
+            <div>
+              <div style="font-weight:700;font-size:0.9rem;">Inventory Insight</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">Global 'Special Shawarma' stock is depleting fast. 4 branches reporting low supply.</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>

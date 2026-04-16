@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse the full Crispy Chicken Calabar menu. Crispy chicken, shawarma, burgers, sides, drinks and combos. Order online for fast delivery." />
+  <title>Menu — Crispy Chicken Calabar</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .menu-page { padding-top: var(--nav-h); min-height:100vh; }
+    .menu-hero-bar {
+      background:linear-gradient(135deg,var(--bg-surface),var(--bg-card));
+      border-bottom:1px solid rgba(255,255,255,0.06);
+      padding:40px 5%;
+    }
+    .menu-hero-bar .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; }
+    .menu-hero-text h1 { font-size:2rem; font-weight:800; }
+    .menu-hero-text p { color:var(--text-secondary); margin-top:6px; }
+    .menu-search {
+      display:flex; align-items:center; gap:12px;
+      background:var(--bg-card); border:1px solid rgba(255,255,255,0.08);
+      border-radius:var(--radius-pill); padding:10px 20px; min-width:280px;
+      transition:var(--transition);
+    }
+    .menu-search:focus-within { border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-dim); }
+    .menu-search input { flex:1; background:transparent; border:none; color:var(--text-primary); font-family:inherit; font-size:0.9rem; outline:none; }
+    .menu-search input::placeholder { color:var(--text-muted); }
+
+    .menu-main { display:grid; grid-template-columns:260px 1fr; gap:0; }
+    .menu-sidebar {
+      border-right:1px solid rgba(255,255,255,0.06);
+      padding:32px 20px; position:sticky; top:var(--nav-h); height:calc(100vh - var(--nav-h)); overflow-y:auto;
+    }
+    .menu-sidebar h4 { margin-bottom:16px; color:var(--text-muted); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.1em; }
+    .sidebar-cat {
+      display:flex; align-items:center; gap:12px; padding:12px 16px;
+      border-radius:var(--radius-sm); cursor:pointer; transition:var(--transition);
+      font-size:0.9rem; font-weight:500; color:var(--text-secondary);
+      border: 1px solid transparent; margin-bottom:4px;
+    }
+    .sidebar-cat:hover { background:var(--bg-surface); color:var(--text-primary); }
+    .sidebar-cat.active { background:var(--primary-dim); color:var(--primary); border-color:var(--primary-border); font-weight:600; }
+    .sidebar-cat .cat-emoji { font-size:1.1rem; }
+    .sidebar-cat .cat-count {
+      margin-left:auto; font-size:0.75rem; font-weight:700;
+      background:rgba(255,255,255,0.08); border-radius:var(--radius-pill);
+      padding:2px 8px; color:var(--text-muted);
+    }
+
+    .menu-content { padding:32px 40px 60px; }
+    .menu-content .cat-section { margin-bottom:60px; }
+    .cat-section-title {
+      font-size:1.3rem; font-weight:800; margin-bottom:24px;
+      display:flex; align-items:center; gap:12px;
+      padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .item-tag-badge {
+      display:inline-block; font-size:0.65rem; font-weight:700;
+      padding:3px 10px; border-radius:var(--radius-pill);
+      text-transform:uppercase; letter-spacing:0.06em;
+      margin-left:auto;
+    }
+
+    /* Sticky cart floating bar */
+    .floating-cart {
+      position: fixed; bottom:24px; left:50%; transform:translateX(-50%);
+      background:var(--primary); color:#fff;
+      border-radius:var(--radius-pill); padding:16px 32px;
+      display:flex; align-items:center; gap:20px;
+      box-shadow:0 8px 40px rgba(255,107,0,0.5);
+      z-index:500; transition:var(--transition); cursor:pointer;
+      font-weight:700; font-size:0.95rem;
+      animation:slideIn 0.4s ease;
+      min-width:300px;
+    }
+    .floating-cart:hover { transform:translateX(-50%) translateY(-3px); box-shadow:0 12px 50px rgba(255,107,0,0.6); }
+    .float-cart-count {
+      background:rgba(255,255,255,0.2); border-radius:var(--radius-pill);
+      padding:4px 12px; font-size:0.85rem;
+    }
+    .float-cart-total { margin-left:auto; }
+
+    @media(max-width:900px) {
+      .menu-main { grid-template-columns:1fr; }
+      .menu-sidebar { display:none; }
+      .menu-content { padding:24px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo">🍗</div>
+    <span>Crispy Chicken<span style="color:var(--primary)"> .</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="menu.html" class="active">Menu</a></li>
+    <li><a href="index.html#branches">Branches</a></li>
+    <li><a href="tracking.html">Track Order</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="cart.html" class="cart-btn" id="nav-cart-btn">
+      🛒<span class="cart-count" id="nav-cart-count">2</span>
+    </a>
+    <a href="cart.html" class="btn btn-primary btn-sm">View Cart</a>
+  </div>
+</nav>
+
+<div class="menu-page">
+
+  <!-- HERO BAR -->
+  <div class="menu-hero-bar">
+    <div class="container">
+      <div class="menu-hero-text">
+        <h1>🍗 Our Full Menu</h1>
+        <p>Fresh. Crispy. Made to order — always.</p>
+      </div>
+      <div class="menu-search">
+        <span>🔍</span>
+        <input type="text" id="menu-search-input" placeholder="Search menu items..." onkeyup="filterMenu(this.value)" />
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-main">
+    <!-- SIDEBAR -->
+    <aside class="menu-sidebar">
+      <h4>Categories</h4>
+
+      <div class="sidebar-cat active" onclick="scrollToSection('chicken')">
+        <span class="cat-emoji">🍗</span> Crispy Chicken <span class="cat-count">6</span>
+      </div>
+      <div class="sidebar-cat" onclick="scrollToSection('shawarma')">
+        <span class="cat-emoji">🌯</span> Shawarma <span class="cat-count">4</span>
+      </div>
+      <div class="sidebar-cat" onclick="scrollToSection('burgers')">
+        <span class="cat-emoji">🍔</span> Burgers <span class="cat-count">4</span>
+      </div>
+      <div class="sidebar-cat" onclick="scrollToSection('combos')">
+        <span class="cat-emoji">📦</span> Combos <span class="cat-count">3</span>
+      </div>
+      <div class="sidebar-cat" onclick="scrollToSection('sides')">
+        <span class="cat-emoji">🍟</span> Sides <span class="cat-count">5</span>
+      </div>
+      <div class="sidebar-cat" onclick="scrollToSection('drinks')">
+        <span class="cat-emoji">🥤</span> Drinks <span class="cat-count">6</span>
+      </div>
+
+      <div style="margin-top:32px; padding:20px; background:var(--primary-dim); border:1px solid var(--primary-border); border-radius:var(--radius-md);">
+        <div style="font-size:0.8rem; font-weight:700; color:var(--primary); margin-bottom:8px;">🕐 Branch Hours</div>
+        <div style="font-size:0.82rem; color:var(--text-secondary);">
+          Most branches open<br><strong style="color:var(--text-primary);">8:00 AM – 11:00 PM</strong><br>Daily, including weekends
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="menu-content">
+
+      <!-- CRISPY CHICKEN SECTION -->
+      <div class="cat-section" id="chicken">
+        <div class="cat-section-title">🍗 Crispy Chicken</div>
+        <div class="menu-grid" id="chicken-grid">
+
+          <div class="menu-card" data-name="1pc Crispy Chicken">
+            <img src="assets/images/hero-chicken.png" alt="1pc Crispy Chicken" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Classic</div>
+              <div class="menu-card-name">1pc Crispy Chicken</div>
+              <div class="menu-card-desc">Our signature crispy-fried chicken piece — seasoned to perfection, golden and juicy inside.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦1,200</div>
+                <button class="add-btn" onclick="addToCart(11,'1pc Crispy Chicken',1200,'assets/images/hero-chicken.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="2pc Crispy Chicken">
+            <img src="assets/images/hero-chicken.png" alt="2pc Crispy Chicken" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Popular</div>
+              <div class="menu-card-name">2pc Crispy Chicken</div>
+              <div class="menu-card-desc">Two golden crispy chicken pieces. Share or enjoy solo — no judging here.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦2,200</div>
+                <button class="add-btn" onclick="addToCart(12,'2pc Crispy Chicken',2200,'assets/images/hero-chicken.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Spicy Crispy Chicken">
+            <img src="assets/images/hero-chicken.png" alt="Spicy Chicken" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🌶️ Hot</div>
+              <div class="menu-card-name">Spicy Crispy Chicken</div>
+              <div class="menu-card-desc">For those who like it hot. Same crispy signature — with a fiery kick that lingers.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦1,400</div>
+                <button class="add-btn" onclick="addToCart(13,'Spicy Crispy Chicken',1400,'assets/images/hero-chicken.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Chicken + Jollof Rice">
+            <img src="assets/images/menu-combo.png" alt="Chicken + Jollof" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">⭐ Best Value</div>
+              <div class="menu-card-name">Chicken + Jollof Rice</div>
+              <div class="menu-card-desc">One crispy piece with our aromatic party jollof rice. The classic Nigerian combo.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦2,500</div>
+                <button class="add-btn" onclick="addToCart(14,'Chicken + Jollof Rice',2500,'assets/images/menu-combo.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Chicken + Coleslaw">
+            <img src="assets/images/menu-combo.png" alt="Chicken + Coleslaw" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Light</div>
+              <div class="menu-card-name">Chicken + Coleslaw</div>
+              <div class="menu-card-desc">Crispy chicken served with our creamy house coleslaw. Fresh, crunchy, satisfying.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦2,000</div>
+                <button class="add-btn" onclick="addToCart(15,'Chicken + Coleslaw',2000,'assets/images/menu-combo.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Full Chicken">
+            <img src="assets/images/hero-chicken.png" alt="Full Chicken" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🔥 Party Size</div>
+              <div class="menu-card-name">Full Crispy Chicken</div>
+              <div class="menu-card-desc">The whole bird — crispy, golden, legendary. Feeds 4-6. Perfect for any occasion.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦8,500</div>
+                <button class="add-btn" onclick="addToCart(16,'Full Crispy Chicken',8500,'assets/images/hero-chicken.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SHAWARMA SECTION -->
+      <div class="cat-section" id="shawarma">
+        <div class="cat-section-title">🌯 Shawarma</div>
+        <div class="menu-grid">
+
+          <div class="menu-card" data-name="Chicken Shawarma">
+            <img src="assets/images/menu-shawarma.png" alt="Chicken Shawarma" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Classic</div>
+              <div class="menu-card-name">Chicken Shawarma</div>
+              <div class="menu-card-desc">Grilled chicken strips, vegetables, garlic sauce in a toasted wrap. Perfectly rolled.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦2,500</div>
+                <button class="add-btn" onclick="addToCart(21,'Chicken Shawarma',2500,'assets/images/menu-shawarma.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Special Shawarma">
+            <img src="assets/images/menu-shawarma.png" alt="Special Shawarma" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🌯 Fan Favourite</div>
+              <div class="menu-card-name">Special Shawarma</div>
+              <div class="menu-card-desc">Double filling — extra chicken, cheese, jalapeños, and our signature hot sauce. Loaded.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦2,800</div>
+                <button class="add-btn" onclick="addToCart(22,'Special Shawarma',2800,'assets/images/menu-shawarma.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Beef Shawarma">
+            <img src="assets/images/menu-shawarma.png" alt="Beef Shawarma" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🥩 Premium</div>
+              <div class="menu-card-name">Beef Shawarma</div>
+              <div class="menu-card-desc">Marinated grilled beef strips with fresh veggies and garlic mayo. Rich, hearty, delicious.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦3,000</div>
+                <button class="add-btn" onclick="addToCart(23,'Beef Shawarma',3000,'assets/images/menu-shawarma.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Shawarma + Drink">
+            <img src="assets/images/menu-shawarma.png" alt="Shawarma + Drink" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Deal</div>
+              <div class="menu-card-name">Shawarma + Drink</div>
+              <div class="menu-card-desc">Any shawarma of your choice paired with a chilled bottle of your favourite drink.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦3,200</div>
+                <button class="add-btn" onclick="addToCart(24,'Shawarma + Drink',3200,'assets/images/menu-shawarma.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BURGERS SECTION -->
+      <div class="cat-section" id="burgers">
+        <div class="cat-section-title">🍔 Burgers</div>
+        <div class="menu-grid">
+
+          <div class="menu-card" data-name="Crispy Chicken Burger">
+            <img src="assets/images/menu-burger.png" alt="Crispy Chicken Burger" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🍔 New</div>
+              <div class="menu-card-name">Crispy Chicken Burger</div>
+              <div class="menu-card-desc">Crispy fillet, lettuce, tomato, and our secret sauce in a toasted brioche bun.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦2,200</div>
+                <button class="add-btn" onclick="addToCart(31,'Crispy Chicken Burger',2200,'assets/images/menu-burger.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Burger Meal">
+            <img src="assets/images/menu-burger.png" alt="Burger Meal" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">💪 Filling</div>
+              <div class="menu-card-name">Burger Meal</div>
+              <div class="menu-card-desc">Crispy chicken burger + seasoned fries + chilled drink. Full meal, great value.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦3,200</div>
+                <button class="add-btn" onclick="addToCart(32,'Burger Meal',3200,'assets/images/menu-burger.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Double Stack Burger">
+            <img src="assets/images/menu-burger.png" alt="Double Stack" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🔥 Monster</div>
+              <div class="menu-card-name">Double Stack Burger</div>
+              <div class="menu-card-desc">Two crispy fillets, double cheese, caramelized onions, special sauce. Not for the faint-hearted.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦3,500</div>
+                <button class="add-btn" onclick="addToCart(33,'Double Stack Burger',3500,'assets/images/menu-burger.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Spicy Burger">
+            <img src="assets/images/menu-burger.png" alt="Spicy Burger" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🌶️ Spicy</div>
+              <div class="menu-card-name">Spicy Burger</div>
+              <div class="menu-card-desc">Spicy crispy chicken fillet with jalapeños, hot sauce and cool coleslaw. Perfect balance.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦2,500</div>
+                <button class="add-btn" onclick="addToCart(34,'Spicy Burger',2500,'assets/images/menu-burger.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- COMBOS SECTION -->
+      <div class="cat-section" id="combos">
+        <div class="cat-section-title">📦 Family Combos</div>
+        <div class="menu-grid">
+
+          <div class="menu-card" data-name="Mega Crispy Combo">
+            <img src="assets/images/menu-combo.png" alt="Mega Combo" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🏆 Best Seller</div>
+              <div class="menu-card-name">Mega Crispy Combo</div>
+              <div class="menu-card-desc">2pc chicken + jollof rice + coleslaw + drink. The perfect solo meal.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦4,500</div>
+                <button class="add-btn" onclick="addToCart(1,'Mega Crispy Combo',4500,'assets/images/menu-combo.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Family Feast Combo">
+            <img src="assets/images/menu-combo.png" alt="Family Feast" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">👨‍👩‍👧‍👦 Family</div>
+              <div class="menu-card-name">Family Feast Combo</div>
+              <div class="menu-card-desc">6pc chicken + 2 large jollof rice + 2 coleslaw + 4 drinks. Feeds the whole family.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦18,000</div>
+                <button class="add-btn" onclick="addToCart(41,'Family Feast Combo',18000,'assets/images/menu-combo.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Party Pack">
+            <img src="assets/images/menu-combo.png" alt="Party Pack" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🎉 Party</div>
+              <div class="menu-card-name">Party Pack</div>
+              <div class="menu-card-desc">Full chicken + 4 large rice portions + 4 coleslaw + 6 drinks. Perfect for events.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦32,000</div>
+                <button class="add-btn" onclick="addToCart(42,'Party Pack',32000,'assets/images/menu-combo.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SIDES -->
+      <div class="cat-section" id="sides">
+        <div class="cat-section-title">🍟 Sides</div>
+        <div class="menu-grid">
+
+          <div class="menu-card" data-name="Seasoned Fries">
+            <img src="assets/images/menu-burger.png" alt="Fries" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Crispy</div>
+              <div class="menu-card-name">Seasoned Fries</div>
+              <div class="menu-card-desc">Golden, crispy, perfectly seasoned fries. Small, medium, or large portions available.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦800</div>
+                <button class="add-btn" onclick="addToCart(51,'Seasoned Fries',800,'assets/images/menu-burger.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Coleslaw">
+            <img src="assets/images/menu-combo.png" alt="Coleslaw" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Fresh</div>
+              <div class="menu-card-name">House Coleslaw</div>
+              <div class="menu-card-desc">Our creamy, crunchy house coleslaw made with fresh cabbage and carrots daily.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦600</div>
+                <button class="add-btn" onclick="addToCart(52,'House Coleslaw',600,'assets/images/menu-combo.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Jollof Rice">
+            <img src="assets/images/menu-combo.png" alt="Jollof Rice" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🍛 Nigerian</div>
+              <div class="menu-card-name">Jollof Rice</div>
+              <div class="menu-card-desc">Aromatic party jollof rice cooked to perfection. The real Nigerian deal.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦1,000</div>
+                <button class="add-btn" onclick="addToCart(53,'Jollof Rice',1000,'assets/images/menu-combo.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Plantain">
+            <img src="assets/images/menu-combo.png" alt="Plantain" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🍌 Sweet</div>
+              <div class="menu-card-name">Fried Plantain</div>
+              <div class="menu-card-desc">Sweet ripe plantain, fried golden. The perfect companion to any chicken meal.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦700</div>
+                <button class="add-btn" onclick="addToCart(54,'Fried Plantain',700,'assets/images/menu-combo.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DRINKS -->
+      <div class="cat-section" id="drinks">
+        <div class="cat-section-title">🥤 Drinks</div>
+        <div class="menu-grid">
+
+          <div class="menu-card" data-name="Coke">
+            <img src="assets/images/menu-drinks.png" alt="Coke" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Chilled</div>
+              <div class="menu-card-name">Coca-Cola</div>
+              <div class="menu-card-desc">Ice-cold Coke to wash down your meal. The classic refresher, always.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦500</div>
+                <button class="add-btn" onclick="addToCart(61,'Coca-Cola',500,'assets/images/menu-drinks.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Sprite">
+            <img src="assets/images/menu-drinks.png" alt="Sprite" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Refreshing</div>
+              <div class="menu-card-name">Sprite</div>
+              <div class="menu-card-desc">Lemon-lime fizz to brighten up your meal. Clean, refreshing, perfect.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦500</div>
+                <button class="add-btn" onclick="addToCart(62,'Sprite',500,'assets/images/menu-drinks.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Juice">
+            <img src="assets/images/menu-drinks.png" alt="Juice" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">🍊 Fresh</div>
+              <div class="menu-card-name">Fruit Juice</div>
+              <div class="menu-card-desc">Chilled Five Alive or Capri-Sun. Choose from orange, apple, or tropical.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦600</div>
+                <button class="add-btn" onclick="addToCart(63,'Fruit Juice',600,'assets/images/menu-drinks.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="menu-card" data-name="Water">
+            <img src="assets/images/menu-drinks.png" alt="Water" class="menu-card-img" />
+            <div class="menu-card-body">
+              <div class="menu-card-tag">Pure</div>
+              <div class="menu-card-name">Bottled Water</div>
+              <div class="menu-card-desc">Cold Pure Life or Eva water. Chilled and refreshing.</div>
+              <div class="menu-card-footer">
+                <div class="menu-price">₦300</div>
+                <button class="add-btn" onclick="addToCart(64,'Bottled Water',300,'assets/images/menu-drinks.png')">+</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- FLOATING CART -->
+<div class="floating-cart" id="floating-cart" onclick="window.location='cart.html'" style="display:none;">
+  <span>🛒 View Order</span>
+  <span class="float-cart-count" id="float-cart-count">0 items</span>
+  <span class="float-cart-total" id="float-cart-total">₦0</span>
+</div>
+
+<script src="js/app.js"></script>
+<script>
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+    document.querySelectorAll('.sidebar-cat').forEach(c=>c.classList.remove('active'));
+    event.target.closest('.sidebar-cat').classList.add('active');
+  }
+
+  function filterMenu(val) {
+    const cards = document.querySelectorAll('.menu-card');
+    cards.forEach(card => {
+      const name = card.dataset.name || '';
+      card.style.display = name.toLowerCase().includes(val.toLowerCase()) || val==='' ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manager Dashboard — Crispy Chicken Calabar</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body class="dashboard-body">
+
+<!-- SIDEBAR -->
+<aside class="dash-sidebar" id="sidebar">
+  <div class="dash-brand">
+    <div class="nav-logo">🍗</div>
+    <div>
+      <div style="font-weight:800;font-size:0.95rem;">Crispy Chicken</div>
+      <div style="font-size:0.72rem;color:var(--text-muted);">Manager Portal</div>
+    </div>
+  </div>
+
+  <div class="branch-pill">
+    <span style="font-size:1rem;">🏪</span>
+    <div>
+      <div style="font-size:0.8rem;font-weight:700;">Branch 2</div>
+      <div style="font-size:0.7rem;color:var(--text-muted);">Marian Road</div>
+    </div>
+    <span class="chip chip-green" style="margin-left:auto;font-size:0.65rem;">LIVE</span>
+  </div>
+
+  <nav class="dash-nav">
+    <div class="dash-nav-section">
+      <div class="dash-nav-label">Operations</div>
+      <a href="#" class="dash-nav-item active" id="nav-orders" onclick="showSection('orders',this)">
+        <span>📋</span> Live Orders
+        <span class="nav-badge" id="orders-badge">7</span>
+      </a>
+      <a href="#" class="dash-nav-item" id="nav-menu" onclick="showSection('menu',this)">
+        <span>🍗</span> Menu Management
+      </a>
+      <a href="#" class="dash-nav-item" id="nav-inventory" onclick="showSection('inventory',this)">
+        <span>📦</span> Inventory
+        <span class="nav-badge warning">2</span>
+      </a>
+    </div>
+    <div class="dash-nav-section">
+      <div class="dash-nav-label">Reports</div>
+      <a href="#" class="dash-nav-item" onclick="showSection('reports',this)">
+        <span>📊</span> Daily Report
+      </a>
+      <a href="#" class="dash-nav-item" onclick="showSection('staff',this)">
+        <span>👥</span> Staff
+      </a>
+      <a href="#" class="dash-nav-item" onclick="showSection('feedback',this)">
+        <span>⭐</span> Customer Feedback
+      </a>
+    </div>
+    <div class="dash-nav-section" style="margin-top:auto;">
+      <a href="index.html" class="dash-nav-item">
+        <span>🌐</span> View Website
+      </a>
+      <a href="ceo-dashboard.html" class="dash-nav-item">
+        <span>👔</span> CEO Dashboard
+      </a>
+    </div>
+  </nav>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="dash-main">
+
+  <!-- TOP BAR -->
+  <header class="dash-topbar">
+    <div>
+      <h2 style="font-size:1.3rem;font-weight:800;">Live Orders</h2>
+      <p style="font-size:0.82rem;color:var(--text-muted); margin-top:2px;">Branch 2 · Marian Road · <span style="color:var(--success);">● Open</span></p>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div class="dash-time" id="dash-time">09:16 AM</div>
+      <div class="dash-topbar-date" id="dash-date">Thu, Apr 16 2026</div>
+      <div class="notif-btn" onclick="toggleNotifs()">
+        🔔
+        <span class="notif-dot"></span>
+      </div>
+      <div class="manager-avatar">AM</div>
+    </div>
+  </header>
+
+  <!-- STATS ROW -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(255,107,0,0.15);border-color:rgba(255,107,0,0.3);">📋</div>
+      <div class="stat-body">
+        <div class="stat-value" id="total-orders">47</div>
+        <div class="stat-label">Orders Today</div>
+      </div>
+      <div class="stat-trend up">+12% ↑</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.3);">₦</div>
+      <div class="stat-body">
+        <div class="stat-value" id="today-revenue">₦186,500</div>
+        <div class="stat-label">Revenue Today</div>
+      </div>
+      <div class="stat-trend up">+8% ↑</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(59,130,246,0.15);border-color:rgba(59,130,246,0.3);">⏱️</div>
+      <div class="stat-body">
+        <div class="stat-value">22m</div>
+        <div class="stat-label">Avg Prep Time</div>
+      </div>
+      <div class="stat-trend down">-3m ↓</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(255,209,102,0.15);border-color:rgba(255,209,102,0.3);">⭐</div>
+      <div class="stat-body">
+        <div class="stat-value">4.7</div>
+        <div class="stat-label">Avg Rating Today</div>
+      </div>
+      <div class="stat-trend up">+0.2 ↑</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon" style="background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.3);">🛵</div>
+      <div class="stat-body">
+        <div class="stat-value" id="active-orders">7</div>
+        <div class="stat-label">Active Orders</div>
+      </div>
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--danger);animation:pulse 2s infinite;"></div>
+    </div>
+  </div>
+
+  <!-- ORDERS SECTION -->
+  <div class="dash-content" id="section-orders">
+
+    <!-- ORDER COLUMNS -->
+    <div class="kanban-cols">
+
+      <!-- NEW ORDERS -->
+      <div class="kanban-col">
+        <div class="col-header">
+          <div class="col-title">🆕 New Orders</div>
+          <div class="col-count" id="new-count">3</div>
+        </div>
+        <div class="col-body" id="col-new">
+
+          <div class="order-card new-order" id="order-481">
+            <div class="order-card-header">
+              <span class="order-num">#CC-0481</span>
+              <span class="chip chip-orange">Delivery</span>
+              <span class="order-time">9:14 AM</span>
+            </div>
+            <div class="order-items-list">
+              <div>🍗 Mega Crispy Combo × 1</div>
+              <div>🌯 Special Shawarma × 1</div>
+            </div>
+            <div class="order-card-footer">
+              <div class="order-customer">👤 Kingsley M.</div>
+              <div class="order-total">₦7,800</div>
+            </div>
+            <div class="order-actions">
+              <button class="btn-accept" onclick="acceptOrder('order-481','col-new','col-preparing','new-count','prep-count')">✅ Accept</button>
+              <button class="btn-reject" onclick="rejectOrder('order-481')">✕ Reject</button>
+            </div>
+          </div>
+
+          <div class="order-card new-order" id="order-482">
+            <div class="order-card-header">
+              <span class="order-num">#CC-0482</span>
+              <span class="chip chip-blue">Pickup</span>
+              <span class="order-time">9:15 AM</span>
+            </div>
+            <div class="order-items-list">
+              <div>🍔 Burger Meal × 2</div>
+              <div>🥤 Coke × 2</div>
+            </div>
+            <div class="order-card-footer">
+              <div class="order-customer">👤 Amaka O.</div>
+              <div class="order-total">₦7,400</div>
+            </div>
+            <div class="order-actions">
+              <button class="btn-accept" onclick="acceptOrder('order-482','col-new','col-preparing','new-count','prep-count')">✅ Accept</button>
+              <button class="btn-reject" onclick="rejectOrder('order-482')">✕ Reject</button>
+            </div>
+          </div>
+
+          <div class="order-card new-order" id="order-483">
+            <div class="order-card-header">
+              <span class="order-num">#CC-0483</span>
+              <span class="chip chip-orange">Delivery</span>
+              <span class="order-time">9:16 AM</span>
+            </div>
+            <div class="order-items-list">
+              <div>🍗 1pc Crispy Chicken × 3</div>
+              <div>🍟 Seasoned Fries × 2</div>
+            </div>
+            <div class="order-card-footer">
+              <div class="order-customer">👤 Emeka N.</div>
+              <div class="order-total">₦5,200</div>
+            </div>
+            <div class="order-actions">
+              <button class="btn-accept" onclick="acceptOrder('order-483','col-new','col-preparing','new-count','prep-count')">✅ Accept</button>
+              <button class="btn-reject" onclick="rejectOrder('order-483')">✕ Reject</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PREPARING -->
+      <div class="kanban-col">
+        <div class="col-header">
+          <div class="col-title">👨‍🍳 Preparing</div>
+          <div class="col-count" id="prep-count">2</div>
+        </div>
+        <div class="col-body" id="col-preparing">
+
+          <div class="order-card preparing-order" id="order-478">
+            <div class="order-card-header">
+              <span class="order-num">#CC-0478</span>
+              <span class="chip chip-orange">Delivery</span>
+              <span class="order-time">9:02 AM</span>
+            </div>
+            <div class="order-items-list">
+              <div>🍗 2pc Crispy Chicken × 1</div>
+              <div>🌯 Beef Shawarma × 1</div>
+            </div>
+            <div class="order-card-footer">
+              <div class="order-customer">👤 Fatimah B.</div>
+              <div class="order-total">₦5,200</div>
+            </div>
+            <div class="prep-timer" id="timer-478">⏱ 14 mins</div>
+            <button class="btn-ready" onclick="markReady('order-478','col-preparing','col-ready','prep-count','ready-count')">📦 Mark Ready</button>
+          </div>
+
+          <div class="order-card preparing-order" id="order-479">
+            <div class="order-card-header">
+              <span class="order-num">#CC-0479</span>
+              <span class="chip chip-blue">Pickup</span>
+              <span class="order-time">9:08 AM</span>
+            </div>
+            <div class="order-items-list">
+              <div>📦 Family Feast Combo × 1</div>
+            </div>
+            <div class="order-card-footer">
+              <div class="order-customer">👤 Grace E.</div>
+              <div class="order-total">₦18,000</div>
+            </div>
+            <div class="prep-timer" id="timer-479">⏱ 8 mins</div>
+            <button class="btn-ready" onclick="markReady('order-479','col-preparing','col-ready','prep-count','ready-count')">📦 Mark Ready</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- READY -->
+      <div class="kanban-col">
+        <div class="col-header">
+          <div class="col-title">📦 Ready</div>
+          <div class="col-count" id="ready-count">1</div>
+        </div>
+        <div class="col-body" id="col-ready">
+
+          <div class="order-card ready-order" id="order-475">
+            <div class="order-card-header">
+              <span class="order-num">#CC-0475</span>
+              <span class="chip chip-orange">Delivery</span>
+              <span class="order-time">8:55 AM</span>
+            </div>
+            <div class="order-items-list">
+              <div>🍔 Double Stack Burger × 1</div>
+              <div>🥤 Drink × 2</div>
+            </div>
+            <div class="order-card-footer">
+              <div class="order-customer">👤 Mike A.</div>
+              <div class="order-total">₦4,500</div>
+            </div>
+            <div style="font-size:0.8rem;color:var(--warning);font-weight:600;margin:10px 0;">⏳ Awaiting rider pickup...</div>
+            <button class="btn-dispatched" onclick="markDispatched('order-475','col-ready','col-delivered','ready-count','done-count')">🛵 Dispatched</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DELIVERED TODAY -->
+      <div class="kanban-col">
+        <div class="col-header">
+          <div class="col-title">✅ Completed</div>
+          <div class="col-count" id="done-count">41</div>
+        </div>
+        <div class="col-body" id="col-delivered" style="max-height:500px;overflow-y:auto;">
+
+          <div class="order-card done-order">
+            <div class="order-card-header">
+              <span class="order-num">#CC-0474</span>
+              <span class="chip chip-green">Delivered</span>
+              <span class="order-time">8:52 AM</span>
+            </div>
+            <div class="order-card-footer" style="margin-top:8px;">
+              <div class="order-customer">👤 Sandra K.</div>
+              <div class="order-total">₦3,200</div>
+            </div>
+          </div>
+          <div class="order-card done-order">
+            <div class="order-card-header">
+              <span class="order-num">#CC-0473</span>
+              <span class="chip chip-blue">Picked up</span>
+              <span class="order-time">8:48 AM</span>
+            </div>
+            <div class="order-card-footer" style="margin-top:8px;">
+              <div class="order-customer">👤 Chidi E.</div>
+              <div class="order-total">₦6,800</div>
+            </div>
+          </div>
+          <div class="order-card done-order">
+            <div class="order-card-header">
+              <span class="order-num">#CC-0472</span>
+              <span class="chip chip-green">Delivered</span>
+              <span class="order-time">8:41 AM</span>
+            </div>
+            <div class="order-card-footer" style="margin-top:8px;">
+              <div class="order-customer">👤 Bola A.</div>
+              <div class="order-total">₦4,500</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- INVENTORY ALERTS -->
+    <div class="alerts-section">
+      <h3 style="font-size:1rem;font-weight:700;margin-bottom:16px;">⚠️ Inventory Alerts</h3>
+      <div class="alert-row">
+        <div class="alert-item warning">
+          <span>🌯</span>
+          <div>
+            <div style="font-weight:700;font-size:0.9rem;">Shawarma Wraps</div>
+            <div style="font-size:0.8rem;color:var(--text-muted);">Only 12 wraps remaining</div>
+          </div>
+          <div class="chip chip-yellow" style="margin-left:auto;">Low Stock</div>
+        </div>
+        <div class="alert-item danger">
+          <span>🥤</span>
+          <div>
+            <div style="font-weight:700;font-size:0.9rem;">Coke (500ml)</div>
+            <div style="font-size:0.8rem;color:var(--text-muted);">Only 6 bottles left!</div>
+          </div>
+          <div class="chip chip-red" style="margin-left:auto;">Critical</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- OTHER SECTIONS (hidden by default) -->
+  <div class="dash-content" id="section-menu" style="display:none;">
+    <div style="padding:40px;text-align:center;">
+      <div style="font-size:3rem;margin-bottom:16px;">🍗</div>
+      <h3>Menu Management</h3>
+      <p style="color:var(--text-secondary);margin-top:8px;">Toggle item availability, update prices, and manage the menu for this branch.</p>
+      <div class="menu-toggle-grid" style="margin-top:32px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;text-align:left;">
+        <div class="menu-toggle-item">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-weight:700;">Mega Crispy Combo</span>
+            <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
+          </div>
+          <div style="font-size:0.8rem;color:var(--text-muted);">₦4,500 · Available</div>
+        </div>
+        <div class="menu-toggle-item">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-weight:700;">Special Shawarma</span>
+            <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
+          </div>
+          <div style="font-size:0.8rem;color:var(--text-muted);">₦2,800 · Available</div>
+        </div>
+        <div class="menu-toggle-item">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-weight:700;">Beef Shawarma</span>
+            <div class="toggle-switch" onclick="this.classList.toggle('active')"></div>
+          </div>
+          <div style="font-size:0.8rem;color:var(--text-muted);">₦3,000 · Unavailable</div>
+        </div>
+        <div class="menu-toggle-item">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-weight:700;">Crispy Burger</span>
+            <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
+          </div>
+          <div style="font-size:0.8rem;color:var(--text-muted);">₦2,200 · Available</div>
+        </div>
+        <div class="menu-toggle-item">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-weight:700;">Full Chicken</span>
+            <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
+          </div>
+          <div style="font-size:0.8rem;color:var(--text-muted);">₦8,500 · Available</div>
+        </div>
+        <div class="menu-toggle-item">
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-weight:700;">Family Feast Combo</span>
+            <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
+          </div>
+          <div style="font-size:0.8rem;color:var(--text-muted);">₦18,000 · Available</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-content" id="section-inventory" style="display:none;">
+    <div style="padding:40px;text-align:center;">
+      <div style="font-size:3rem;margin-bottom:16px;">📦</div>
+      <h3>Inventory Management</h3>
+      <p style="color:var(--text-secondary);margin-top:8px;">Real-time stock levels for Branch 2 — Marian Road.</p>
+    </div>
+  </div>
+
+  <div class="dash-content" id="section-reports" style="display:none;">
+    <div style="padding:40px;text-align:center;">
+      <div style="font-size:3rem;margin-bottom:16px;">📊</div>
+      <h3>Daily Report</h3>
+      <p style="color:var(--text-secondary);margin-top:8px;">Revenue, orders, and performance for today at Branch 2.</p>
+    </div>
+  </div>
+
+  <div class="dash-content" id="section-staff" style="display:none;">
+    <div style="padding:40px;text-align:center;">
+      <div style="font-size:3rem;margin-bottom:16px;">👥</div>
+      <h3>Staff Management</h3>
+      <p style="color:var(--text-secondary);margin-top:8px;">Clock-in/out, task assignment, and performance tracking.</p>
+    </div>
+  </div>
+
+  <div class="dash-content" id="section-feedback" style="display:none;">
+    <div style="padding:40px;text-align:center;">
+      <div style="font-size:3rem;margin-bottom:16px;">⭐</div>
+      <h3>Customer Feedback</h3>
+      <p style="color:var(--text-secondary);margin-top:8px;">Reviews and ratings from today's customers at Branch 2.</p>
+    </div>
+  </div>
+
+</main>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
