@@ -18,6 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Init cart badge
   updateCartBadges();
+
+  // Make menu cards navigate to product details, except when clicking the add to cart button
+  document.querySelectorAll('.menu-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (e) => {
+      // Don't navigate if clicking the add button or within its target area
+      if (e.target.closest('.add-btn')) return;
+      window.location.href = 'product.html';
+    });
+  });
 });
 
 function addToCart(id, name, price, img) {

@@ -177,8 +177,9 @@ body.sidebar-collapsed .dash-nav-label { opacity: 0; pointer-events: none; }
 body.sidebar-collapsed .dash-nav-item span:not(:first-child) { display: none; }
 body.sidebar-collapsed .nav-badge:not(.warning), body.sidebar-collapsed .chip { display: none; }
 .sidebar-toggle-btn {
-  background: transparent; border: 1px solid rgba(255,255,255,0.1); color: var(--text-secondary);
-  border-radius: var(--radius-sm); padding: 8px 12px; cursor: pointer; transition: var(--transition);
-  margin-right: 14px; font-size: 1.1rem; flex-shrink: 0;
+  background: var(--bg-surface); border: 1px solid rgba(255,255,255,0.08); color: var(--text-secondary);
+  border-radius: var(--radius-sm); width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: var(--transition); margin-right: 24px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
-.sidebar-toggle-btn:hover { background: var(--bg-surface); color: var(--text-primary); border-color: var(--primary-border); }
+.sidebar-toggle-btn:hover { background: var(--primary-dim); color: var(--primary); border-color: var(--primary-border); }
+.sidebar-toggle-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
