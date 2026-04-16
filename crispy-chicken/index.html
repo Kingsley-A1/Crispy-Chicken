@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Crispy Chicken Calabar — Order crispy fried chicken, shawarma, and more online. Fast delivery across all 5 branches in Calabar. Order now!" />
+  <title>Crispy Chicken Calabar — Order Fresh, Eat Happy</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── PAGE-SPECIFIC STYLES ── */
+    .features-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:24px; }
+    .feature-card {
+      background:var(--bg-card); border:1px solid rgba(255,255,255,0.06);
+      border-radius:var(--radius-md); padding:28px 20px;
+      transition:var(--transition); text-align:center;
+    }
+    .feature-card:hover { border-color:var(--primary-border); transform:translateY(-4px); }
+    .feature-icon { font-size:2.5rem; margin-bottom:16px; }
+    .feature-title { font-size:1rem; font-weight:700; margin-bottom:8px; }
+    .feature-desc { font-size:0.85rem; color:var(--text-secondary); line-height:1.6; }
+
+    .menu-preview-section { background:var(--bg-card); }
+
+    .about-section { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+    .about-img { border-radius:var(--radius-xl); overflow:hidden; aspect-ratio:1; box-shadow:var(--shadow-glow); }
+    .about-img img { width:100%; height:100%; object-fit:cover; }
+    .about-label { color:var(--primary); font-weight:600; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:16px; }
+    .about-points { margin-top:24px; display:flex; flex-direction:column; gap:16px; }
+    .about-point { display:flex; gap:14px; align-items:flex-start; }
+    .about-point-icon {
+      width:36px; height:36px; border-radius:var(--radius-sm);
+      background:var(--primary-dim); border:1px solid var(--primary-border);
+      display:flex; align-items:center; justify-content:center;
+      flex-shrink:0; font-size:1rem;
+    }
+    .about-point-text .apt-title { font-size:0.95rem; font-weight:700; margin-bottom:4px; }
+    .about-point-text .apt-desc { font-size:0.85rem; color:var(--text-secondary); }
+
+    @media(max-width:900px) {
+      .about-section { grid-template-columns:1fr; }
+      .about-img { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo">🍗</div>
+    <span>Crispy Chicken<span style="color:var(--primary)"> .</span></span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="index.html#branches">Branches</a></li>
+    <li><a href="index.html#about">Our Story</a></li>
+    <li><a href="tracking.html">Track Order</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <a href="cart.html" class="cart-btn" id="nav-cart-btn" title="View Cart">
+      🛒
+      <span class="cart-count" id="nav-cart-count">2</span>
+    </a>
+    <a href="menu.html" class="btn btn-primary btn-sm">Order Now</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid container">
+
+    <!-- LEFT COPY -->
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Now delivering across Calabar · 5 Branches
+      </div>
+
+      <h1 class="display-1 hero-title">
+        Calabar's
+        <span class="gradient-text">Crispiest</span>
+        Chicken,
+        Delivered.
+      </h1>
+
+      <p class="hero-subtitle">
+        From our kitchen to your door in under 45 minutes. Order your favourite
+        crispy chicken, shawarma, and combos — fresh, fast, and flavourful.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="menu.html" class="btn btn-primary btn-lg">
+          🍗 Order Now
+        </a>
+        <a href="index.html#how-it-works" class="btn btn-outline btn-lg">
+          How It Works
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Branches</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">45min</div>
+          <div class="stat-label">Avg Delivery</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">4.8★</div>
+          <div class="stat-label">Rating</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">10k+</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="hero-visual">
+      <div class="hero-img-wrap">
+        <img src="assets/images/hero-chicken.png" alt="Crispy Chicken" loading="eager" />
+      </div>
+
+      <div class="hero-float-card card-1">
+        <div class="float-icon">📍</div>
+        <div class="float-info">
+          <div class="float-title">Nearest Branch</div>
+          <div class="float-sub">Effio-Ette Junction · 1.2km</div>
+        </div>
+      </div>
+
+      <div class="hero-float-card card-2">
+        <div class="float-icon">🚴</div>
+        <div class="float-info">
+          <div class="float-title">Order Delivered</div>
+          <div class="float-sub">⭐⭐⭐⭐⭐ · Just now</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     WHY CRISPY CHICKEN
+════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Why Choose Us</div>
+      <h2>The Calabar Standard for <span class="gradient-text">Fast Food Done Right</span></h2>
+      <p>We're not just another chicken joint. We're Calabar's most-loved, most-trusted, and now most-connected fast food experience.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔥</div>
+        <div class="feature-title">Always Fresh</div>
+        <div class="feature-desc">Every piece prepared to order. No freezer food — our chicken is cooked the moment your order comes in.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Lightning Fast</div>
+        <div class="feature-desc">From order to door in under 45 minutes. Real-time tracking so you know exactly where your food is.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <div class="feature-title">5 Branches</div>
+        <div class="feature-desc">Strategically located across Calabar — there's always a Crispy Chicken near you, ready to serve.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💳</div>
+        <div class="feature-title">Flexible Payment</div>
+        <div class="feature-desc">Pay by card, bank transfer, or cash on delivery. We make ordering effortless from start to finish.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎁</div>
+        <div class="feature-title">Loyalty Rewards</div>
+        <div class="feature-desc">Order 10 times, get one free — automatically. Your loyalty is valued and rewarded every single time.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⭐</div>
+        <div class="feature-title">Rated 4.8 Stars</div>
+        <div class="feature-desc">Over 10,000 happy customers have spoken. Join Calabar's most-loved fast food family today.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     FEATURED MENU
+════════════════════════════════════════════════════════════ -->
+<section class="section menu-preview-section" id="menu-preview">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Our Menu</div>
+      <h2>Crowd <span class="gradient-text">Favourites</span></h2>
+      <p>Hand-picked bestsellers loved by thousands of Calabar customers. 100% fresh, 100% delicious.</p>
+    </div>
+
+    <div class="menu-grid" id="featured-menu">
+
+      <div class="menu-card" data-id="1" data-name="Mega Crispy Combo" data-price="4500">
+        <img src="assets/images/menu-combo.png" alt="Mega Crispy Combo" class="menu-card-img" />
+        <div class="menu-card-body">
+          <div class="menu-card-tag">🏆 Best Seller</div>
+          <div class="menu-card-name">Mega Crispy Combo</div>
+          <div class="menu-card-desc">2 pieces crispy chicken + jollof rice + coleslaw + cold drink. Value for your money.</div>
+          <div class="menu-card-footer">
+            <div class="menu-price">₦4,500 <span>/ combo</span></div>
+            <button class="add-btn" onclick="addToCart(1,'Mega Crispy Combo',4500,'assets/images/menu-combo.png')">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-id="2" data-name="Special Shawarma" data-price="2800">
+        <img src="assets/images/menu-shawarma.png" alt="Special Shawarma" class="menu-card-img" />
+        <div class="menu-card-body">
+          <div class="menu-card-tag">🌯 Fan Favourite</div>
+          <div class="menu-card-name">Special Shawarma</div>
+          <div class="menu-card-desc">Grilled chicken strips, crispy veggies, cheese sauce wrapped in a warm toasted tortilla.</div>
+          <div class="menu-card-footer">
+            <div class="menu-price">₦2,800 <span>/ wrap</span></div>
+            <button class="add-btn" onclick="addToCart(2,'Special Shawarma',2800,'assets/images/menu-shawarma.png')">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-id="3" data-name="Crispy Chicken Burger" data-price="3200">
+        <img src="assets/images/menu-burger.png" alt="Crispy Burger Meal" class="menu-card-img" />
+        <div class="menu-card-body">
+          <div class="menu-card-tag">🍔 New Arrival</div>
+          <div class="menu-card-name">Crispy Chicken Burger</div>
+          <div class="menu-card-desc">Juicy crispy chicken fillet, lettuce, signature sauce in a toasted brioche bun. With fries + drink.</div>
+          <div class="menu-card-footer">
+            <div class="menu-price">₦3,200 <span>/ meal</span></div>
+            <button class="add-btn" onclick="addToCart(3,'Crispy Chicken Burger',3200,'assets/images/menu-burger.png')">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-card" data-id="4" data-name="Chilled Drinks Bundle" data-price="1200">
+        <img src="assets/images/menu-drinks.png" alt="Drinks" class="menu-card-img" />
+        <div class="menu-card-body">
+          <div class="menu-card-tag">🥤 Refreshing</div>
+          <div class="menu-card-name">Chilled Drinks Bundle</div>
+          <div class="menu-card-desc">Choice of Coke, Pepsi, Sprite, or Fanta. Ice-cold and ready. Add 3 and save 20%.</div>
+          <div class="menu-card-footer">
+            <div class="menu-price">₦1,200 <span>/ piece</span></div>
+            <button class="add-btn" onclick="addToCart(4,'Chilled Drink',1200,'assets/images/menu-drinks.png')">+</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:48px;">
+      <a href="menu.html" class="btn btn-outline btn-lg">View Full Menu →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════════════════════════ -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Simple Process</div>
+      <h2>Order in <span class="gradient-text">3 Easy Steps</span></h2>
+      <p>From craving to delivery — we've made it as effortless as possible.</p>
+    </div>
+
+    <div class="steps-grid" style="position:relative;">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">🍽️</div>
+        <div class="step-title">Browse & Choose</div>
+        <div class="step-desc">Explore our full menu. Filter by category, see what's trending, and add your favourites to cart.</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">📍</div>
+        <div class="step-title">Pick Branch & Pay</div>
+        <div class="step-desc">Select your nearest branch, choose delivery or pickup, and pay securely — card, transfer, or cash.</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">🛵</div>
+        <div class="step-title">Track Your Order</div>
+        <div class="step-desc">Watch your order status in real-time: Confirmed → Preparing → Ready → On the Way → Delivered. 🎉</div>
+        <div class="step-connector"></div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-icon">💰</div>
+        <div class="step-title">Earn Loyalty Points</div>
+        <div class="step-desc">Every order earns you points. Redeem for free meals. Our way of saying thank you.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     ABOUT / OUR STORY
+════════════════════════════════════════════════════════════ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-section">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1200&q=80&auto=format&fit=crop" alt="Crispy Chicken Restaurant Interior" />
+      </div>
+      <div class="about-text">
+        <div class="about-label">Our Story</div>
+        <h2>Calabar's <span class="gradient-text">Trusted Name</span> in Fast Food</h2>
+        <p style="color:var(--text-secondary); margin-top:16px; line-height:1.8;">
+          Crispy Chicken started with one simple idea — that Calabar deserved world-class fried chicken made right here at home.
+          Today, with 5 branches across the city and a reputation built on freshness and taste, we're just getting started.
+          Now, we're bringing that same quality to your doorstep — through technology that puts you in control.
+        </p>
+        <div class="about-points">
+          <div class="about-point">
+            <div class="about-point-icon">🏪</div>
+            <div class="about-point-text">
+              <div class="apt-title">5 Locations Across Calabar</div>
+              <div class="apt-desc">Effio-Ette, Marian Road, Calabar South, Watt Market & more</div>
+            </div>
+          </div>
+          <div class="about-point">
+            <div class="about-point-icon">🍗</div>
+            <div class="about-point-text">
+              <div class="apt-title">Fresh, Never Frozen</div>
+              <div class="apt-desc">Every chicken is sourced fresh and cooked to order — always.</div>
+            </div>
+          </div>
+          <div class="about-point">
+            <div class="about-point-icon">🚴</div>
+            <div class="about-point-text">
+              <div class="apt-title">Fast Delivery Network</div>
+              <div class="apt-desc">Partnered with Calabar's fastest riders for under-45-minute delivery.</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:32px;">
+          <a href="menu.html" class="btn btn-primary">Start Ordering Today</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     BRANCHES
+════════════════════════════════════════════════════════════ -->
+<section class="section" id="branches" style="background:var(--bg-card);">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Find Us</div>
+      <h2>Our <span class="gradient-text">5 Branches</span></h2>
+      <p>We're always close to you. Find your nearest Crispy Chicken branch across Calabar.</p>
+    </div>
+
+    <div class="branches-grid">
+
+      <div class="branch-card" onclick="window.location='menu.html'">
+        <div class="branch-name">🏪 Branch 1 — Effio-Ette Junction</div>
+        <div class="branch-address">📍 Effio-Ette Road, near Calabar Central Hospital</div>
+        <div class="branch-meta">
+          <span class="branch-badge badge-open">● Open Now</span>
+          <span style="font-size:0.8rem;color:var(--text-muted);">8am – 11pm</span>
+        </div>
+      </div>
+
+      <div class="branch-card" onclick="window.location='menu.html'">
+        <div class="branch-name">🏪 Branch 2 — Marian Road</div>
+        <div class="branch-address">📍 Marian Road, Calabar Municipal</div>
+        <div class="branch-meta">
+          <span class="branch-badge badge-busy">● Busy now</span>
+          <span style="font-size:0.8rem;color:var(--text-muted);">8am – 11pm</span>
+        </div>
+      </div>
+
+      <div class="branch-card" onclick="window.location='menu.html'">
+        <div class="branch-name">🏪 Branch 3 — Calabar South</div>
+        <div class="branch-address">📍 Etta Agbor Road, Calabar South</div>
+        <div class="branch-meta">
+          <span class="branch-badge badge-open">● Open Now</span>
+          <span style="font-size:0.8rem;color:var(--text-muted);">9am – 10pm</span>
+        </div>
+      </div>
+
+      <div class="branch-card" onclick="window.location='menu.html'">
+        <div class="branch-name">🏪 Branch 4 — Watt Market Area</div>
+        <div class="branch-address">📍 Watt Market Road, near the bridge</div>
+        <div class="branch-meta">
+          <span class="branch-badge badge-open">● Open Now</span>
+          <span style="font-size:0.8rem;color:var(--text-muted);">9am – 10pm</span>
+        </div>
+      </div>
+
+      <div class="branch-card" onclick="window.location='menu.html'">
+        <div class="branch-name">🏪 Branch 5 — Ikot Eyo</div>
+        <div class="branch-address">📍 Ikot Eyo Road, off Ndidem Iso Road</div>
+        <div class="branch-meta">
+          <span class="branch-badge badge-open">● Open Now</span>
+          <span style="font-size:0.8rem;color:var(--text-muted);">8am – 11pm</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="label">Customer Love</div>
+      <h2>What Calabar is <span class="gradient-text">Saying</span></h2>
+      <p>Real customers. Real reviews. Real love for Crispy Chicken.</p>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"I ordered the Mega Combo at 9pm and it arrived in 38 minutes. Still hot! 
+        This is the best thing to happen to Calabar's food scene. I order at least 3 times a week now."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div>
+            <div class="author-name">Amaka O.</div>
+            <div class="author-loc">📍 Marian Road</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"The shawarma from Crispy Chicken is unmatched in Calabar. Period. 
+        And now I can track my order on my phone? These people are years ahead of everyone else."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">E</div>
+          <div>
+            <div class="author-name">Emeka N.</div>
+            <div class="author-loc">📍 Effio-Ette</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <div class="testimonial-text">"I used to have to call and wait. Now I open the website, pick what I want, 
+        and pay from my phone. My order is at my door before I finish watching my show. Incredible."</div>
+        <div class="testimonial-author">
+          <div class="author-avatar">F</div>
+          <div>
+            <div class="author-name">Fatimah B.</div>
+            <div class="author-loc">📍 Ikot Eyo</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     LOYALTY BANNER
+════════════════════════════════════════════════════════════ -->
+<div class="loyalty-section">
+  <div class="loyalty-text">
+    <div class="label">Loyalty Programme</div>
+    <h2>Order 10×, Eat <span class="gradient-text">Free</span></h2>
+    <p style="color:var(--text-secondary); margin-top:12px;">
+      Join thousands of Calabar customers already earning free meals. Every order earns points.
+      No stamps, no cards — it's all automatic when you create your account.
+    </p>
+    <div style="margin-top:24px;">
+      <a href="menu.html" class="btn btn-primary">Create Account & Start Earning</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="nav-brand" style="margin-bottom:16px;">
+          <div class="nav-logo">🍗</div>
+          <span>Crispy Chicken</span>
+        </div>
+        <p>Calabar's most loved fast food experience — now fully digital. Order fresh, eat happy.</p>
+        <div class="social-links" style="margin-top:24px;">
+          <a href="#" class="social-btn">📘</a>
+          <a href="#" class="social-btn">📷</a>
+          <a href="#" class="social-btn">🐦</a>
+          <a href="#" class="social-btn">▶️</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="menu.html">Order Online</a></li>
+          <li><a href="index.html#branches">Our Branches</a></li>
+          <li><a href="tracking.html">Track Order</a></li>
+          <li><a href="index.html#about">Our Story</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="menu.html">Crispy Chicken</a></li>
+          <li><a href="menu.html">Shawarma</a></li>
+          <li><a href="menu.html">Burgers & Meals</a></li>
+          <li><a href="menu.html">Sides & Drinks</a></li>
+          <li><a href="menu.html">Family Combos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+2348000000000">📞 0800 000 0000</a></li>
+          <li><a href="mailto:hello@crispychicken.ng">✉️ hello@crispychicken.ng</a></li>
+          <li><a href="#">💬 WhatsApp Support</a></li>
+          <li><a href="#">🕐 Open 8am – 11pm Daily</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Crispy Chicken Calabar. All rights reserved.</span>
+      <span>Engineered by <span style="color:var(--primary); font-weight:600;">King Tech Foundation</span></span>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast" style="display:none;">
+  <div class="toast-icon">🛒</div>
+  <div>
+    <div class="toast-msg" id="toast-msg">Added to cart!</div>
+    <div class="toast-sub" id="toast-sub">Item added successfully</div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
